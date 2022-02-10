@@ -54,15 +54,15 @@ public class TransferFunction {
     final static private double[] ANGLE_SPEED = { -30, -10, 10, 30 };
     final static public TransferFunction GYROSCOPE_ANGLE_TF = new TransferFunction(ANGLE_DELTA, ANGLE_SPEED);
 
-    final static private double[] DISTANCE_DELTA_END = { 0, 3, 5, 15, 20 };
-    final static private double[] DISTANCE_SPEED_END = { 0, 7, 15, 40, 70 };
+    final static private double[] DISTANCE_DELTA_END = { 0, 0.5, 5, 15, 20 };
+    final static private double[] DISTANCE_SPEED_END = { 0, 3, 15, 40, 70 };
     final static public TransferFunction DISTANCE_TF_END = new TransferFunction(DISTANCE_DELTA_END, DISTANCE_SPEED_END);
 
     final static private double[] DISTANCE_DELTA_CONTINUOUS = { 0, 50, 150 };
     final static private double[] DISTANCE_SPEED_CONTINUOUS = { 35, 50, 70 };
     final static public TransferFunction DISTANCE_TF_CONTINUOUS = new TransferFunction(DISTANCE_DELTA_CONTINUOUS, DISTANCE_SPEED_CONTINUOUS);
 
-    final static private double[] TIMER_IN = { 0, 0.05, 0.6, 1 };
+    final static private double[] TIMER_IN = { 0, 0.05, 0.3, 0.5 };
     final static private double[] K_OUT = { 0, 0.1, 0.4, 1 };
     final static public TransferFunction TIMER_TO_K = new TransferFunction(TIMER_IN, K_OUT);
 

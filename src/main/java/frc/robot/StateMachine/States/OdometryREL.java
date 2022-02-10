@@ -36,17 +36,20 @@ public class OdometryREL extends CommandBase {
     }
 
     private void relativeDirectionPositioning() {
-        double angleRelAxis90 = Math.toRadians(set2 + 90);
-        double angleRelAxis0 = Math.toRadians(set2);
-        double sinRelAxisX = Math.sin(angleRelAxis90) * set0;
-        double sinRelAxisY = Math.sin(angleRelAxis0) * set1;
-        double cosRelAxisX = Math.cos(angleRelAxis90) * set0;
-        double cosRelAxisY = Math.cos(angleRelAxis0) * set1;
-        set0 = sinRelAxisX + sinRelAxisY + initX;
-        set1 = cosRelAxisX + cosRelAxisY + initY;
-        set2 = set2 + initZ;
-    }
 
+        double sinX = Math.sin (Math.toRadians(-initZ)) * this.set0; // add to outX
+        double cosX = Math.cos (Math.toRadians(-initZ)) * this.set0; // add to outY
+        double sinY = Math.sin (Math.toRadians(initZ+90)) * this.set1; // add to outX
+        double cosY = Math.cos (Math.toRadians(initZ+90)) * this.set1; // add to outY
+
+        double convY = sinX + sinY;
+        double convX = cosX - cosY;
+
+        this.set0 = initX + convX;
+        this.set1 = initY + convY;
+        this.set2 = initZ + this.set2;
+    }
+ 
     @Override
     public void initialize() {
         firstIterationXYZ();
@@ -56,7 +59,7 @@ public class OdometryREL extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.holonomicDrive.distanceToSpeed(set0, set1, set2, set3, set4);
+        Robot.holonomicDrive.distanceToSpeed(this.set0, this.set1, this.set2, this.set3, this.set4);
     }
 
     @Override

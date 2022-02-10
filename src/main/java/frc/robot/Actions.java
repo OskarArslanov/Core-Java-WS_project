@@ -24,8 +24,15 @@ public static int counter = 0;
 
     private static ArrayList<Command> main() {
         ArrayList<Command> list = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            list.add(new OdometryREL(0, 50, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+        for (int i = 0; i < 1; i++) {
+            list.add(new OdometryREL(0, 0, 45, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+            list.add(new OdometryREL(0, 0, 45, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));  
+            list.add(new OdometryREL(0, 0, 125, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
+            list.add(new OdometryREL(0, 0, 20, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));        
+            list.add(new OdometryABS(0, 0, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));        
         }
         return list;
     }

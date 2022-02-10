@@ -22,9 +22,9 @@ public class MobilityControl implements Runnable {
 
     public DC_Motors dc_Motors = new DC_Motors();
     public Gyroscope gyroscope = new Gyroscope();
-    public PID_Regulator pid_Regulator0 = new PID_Regulator(0.3, 0.2, 0.0001, -100, 100);
-    public PID_Regulator pid_Regulator1 = new PID_Regulator(0.3, 0.2, 0.0001, -100, 100);
-    public PID_Regulator pid_Regulator2 = new PID_Regulator(0.3, 0.2, 0.0001, -100, 100);
+    public PID_Regulator pid_Regulator0 = new PID_Regulator(0.75, 0.2, 0, -100, 100);
+    public PID_Regulator pid_Regulator1 = new PID_Regulator(0.75, 0.2, 0, -100, 100);
+    public PID_Regulator pid_Regulator2 = new PID_Regulator(0.75, 0.2, 0, -100, 100);
     public PID_Regulator pid_Regulator3 = new PID_Regulator(0.5, 0.05, 0, -100, 100);
 
     public void setSpeed(double speedX, double speedY, double speedZ) {
