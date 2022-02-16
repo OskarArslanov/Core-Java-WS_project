@@ -14,26 +14,12 @@ public class Actions extends SequentialCommandGroup {
 public static int counter = 0;
 
     public Actions() {
-        super(
-            commands(
-                init(),
-                main(),
-                finish())
-            );
+        super(commands(main()));
     }
 
     private static ArrayList<Command> main() {
         ArrayList<Command> list = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
-            list.add(new OdometryREL(0, 0, 45, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
-            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
-            list.add(new OdometryREL(0, 0, 45, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
-            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));  
-            list.add(new OdometryREL(0, 0, 125, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
-            list.add(new OdometryREL(0, 30, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));
-            list.add(new OdometryREL(0, 0, 20, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));        
-            list.add(new OdometryABS(0, 0, 0, true, true, EnumLift.TOP, EnumRotation.IDLE, EnumGripper.OPEN));        
-        }
+        
         return list;
     }
 
@@ -46,18 +32,6 @@ public static int counter = 0;
         return collectedCommands.toArray(outArray);
     }
 
-    private static ArrayList<Command> init() {
-        ArrayList<Command> list = new ArrayList<>();
-        list.add(new Start());
-        list.add(new ResetXYZ(0,0,0));
-        return list;
-    }
-
-    private static ArrayList<Command> finish() {
-        ArrayList<Command> list = new ArrayList<>();
-        list.add(new Finish());
-        return list;
-    }
 
     private static double startTime = Timer.getFPGATimestamp();
     public static double iterationTime(boolean reset) {

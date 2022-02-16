@@ -2,7 +2,6 @@ package frc.robot.StateMachine.States;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Actions;
-import frc.robot.subsystems.SimpleDIO;
 
 public class Start extends SequentialCommandGroup {
 
