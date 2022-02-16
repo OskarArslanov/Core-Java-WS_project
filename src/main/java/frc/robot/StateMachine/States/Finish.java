@@ -1,26 +1,29 @@
 package frc.robot.StateMachine.States;
 
-
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
-
-public class Finish extends CommandBase {
+public class Finish implements IState {
 
     @Override
     public void initialize() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public void execute() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void end (boolean interrupted) {
-
+    public void finilize() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public boolean isFinished() {
+        // TODO Auto-generated method stub
         return false;
-    }  
+    }
+    
 }

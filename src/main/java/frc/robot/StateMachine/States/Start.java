@@ -1,27 +1,31 @@
 package frc.robot.StateMachine.States;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Actions;
+import frc.robot.subsystems.StationController;
 
-public class Start extends SequentialCommandGroup {
+public class Start implements IState {
 
     @Override
     public void initialize() {
-
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public void execute() {
-
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void end (boolean interrupted) {
-        Actions.counter++;
+    public void finilize() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public boolean isFinished() {
-        return true;
+        // TODO Auto-generated method stub
+        return StationController.getStartButtonStatus();
     }
+
 }

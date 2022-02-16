@@ -14,19 +14,19 @@ import edu.wpi.first.wpilibj.SPI;
 
 public class StationController {
     
-    // private static final TitanQuad dcMotor = new TitanQuad(42, 0);
-    // public static void setPWM(double value) {
-    //     dcMotor.set(value);
-    // }
+    private static final TitanQuad dcMotor = new TitanQuad(42, 0);
+    public static void setPWM(double value) {
+        dcMotor.set(value);
+    }
 
-    // private static final TitanQuadEncoder enc = new TitanQuadEncoder(dcMotor, 0, 1);
-    // public static double getDC_MotorSpeed() {
-    //     return enc.getSpeed();
-    // }
+    private static final TitanQuadEncoder enc = new TitanQuadEncoder(dcMotor, 0, 1);
+    public static double getDC_MotorSpeed() {
+        return enc.getSpeed();
+    }
 
-    // public static double getDC_MotorDistance() {
-    //     return enc.getEncoderDistance();
-    // }
+    public static double getDC_MotorDistance() {
+        return enc.getEncoderDistance();
+    }
 
     private static final DigitalInput emsButton = new DigitalInput(12); 
     public static boolean getEMS_ButtonStatus() {
@@ -60,13 +60,13 @@ public class StationController {
         return sonar.getRangeMM();
     }
 
-    // private static final AHRS gyro = new AHRS(SPI.Port.kMXP);
-    // public double gyroGetAngle() {
-    //     return gyro.getAngle();
-    // }
+    private static final AHRS gyro = new AHRS(SPI.Port.kMXP);
+    public static double gyroGetAngle() {
+        return gyro.getAngle();
+    }
 
-    // public void resetGyro() {
-    //     gyro.reset();
-    // }
+    public static void resetGyro() {
+        gyro.reset();
+    }
 
 }

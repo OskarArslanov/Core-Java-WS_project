@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.StateMachine.StateMachine;
+import frc.robot.StateMachine.States.StateController;
 import frc.robot.subsystems.StationController;
 
 public class Robot extends TimedRobot {
 
-  private Command auto = new Actions();
+  private Command auto = new StateMachine();
 
   @Override
   public void robotInit() {
@@ -58,6 +60,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("isStop", StationController.getStopButtonStatus());
     SmartDashboard.putNumber("sharp", StationController.getSharpDistance());
     SmartDashboard.putNumber("sonar", StationController.getSonarDistance());
-
+    SmartDashboard.putNumber("index", StateController.index);
   }
 }
