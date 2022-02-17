@@ -1,5 +1,6 @@
 package frc.robot.StateMachine.States;
 
+import frc.robot.Main;
 import frc.robot.StateMachine.CoreEngine.IState;
 
 public class Start implements IState {
@@ -24,8 +25,7 @@ public class Start implements IState {
 
     @Override
     public boolean isFinished() {
-        // TODO Auto-generated method stub
-        return STATION_CONTROLLER.getStartButtonStatus();
+        return Main.switchMap.get("startButtonStatus");
     }
 
 }

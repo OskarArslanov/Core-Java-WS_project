@@ -1,30 +1,28 @@
 package frc.robot.StateMachine.States;
 
+import frc.robot.Main;
 import frc.robot.StateMachine.CoreEngine.IState;
 
 public class DC_Motor implements IState {
 
     @Override
     public void initialize() {
-        STATION_CONTROLLER.resetEnc();      
+        Main.motorControllerMap.put("resetEncs", 1.0);
     }
 
     @Override
     public void execute() {
-        STATION_CONTROLLER.setPWM(1);
-        
+        Main.motorControllerMap.put("resetEncs", 0.0);
+        Main.motorControllerMap.put("setMotorSpeed0", 1.0);
     }
 
     @Override
     public void finilize() {
-        STATION_CONTROLLER.setPWM(0);
-        
+        Main.motorControllerMap.put("setMotorSpeed0", 0.0);
     }
 
     @Override
     public boolean isFinished() {
-        return STATION_CONTROLLER.getEncoderDistance() > 100;
-    }
-    
-    
+        return Main.motorControllerMap.get("encDistance0") > 400;
+    }  
 }

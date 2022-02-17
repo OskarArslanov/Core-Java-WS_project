@@ -5,16 +5,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class CommandAdapter extends CommandBase { // outter class for CommandsBase. Includes states of Command
 
     // do not do anything here
-    StateMachine stateController = new StateMachine();
+    StateMachine stateMachine = new StateMachine();
 
     @Override
     public void initialize() {
-        stateController.initStates();
+        stateMachine.initStates();
     }
 
     @Override
     public void execute() {
-        stateController.executeStates();
+        stateMachine.executeStates();
     }
 
     @Override
@@ -24,6 +24,6 @@ public class CommandAdapter extends CommandBase { // outter class for CommandsBa
 
     @Override
     public boolean isFinished() {
-        return stateController.isProgramFinished();
+        return stateMachine.isProgramFinished();
     }
 }
