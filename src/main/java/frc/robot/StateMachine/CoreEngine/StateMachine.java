@@ -1,19 +1,23 @@
-package frc.robot.StateMachine.States;
+package frc.robot.StateMachine.CoreEngine;
 
 import java.util.ArrayList;
 
-public class StateController {
+import frc.robot.StateMachine.States.DC_Motor;
+import frc.robot.StateMachine.States.Finish;
+import frc.robot.StateMachine.States.Start;
+
+public class StateMachine { // inner class that adapts Oskar's states to CommandBase
 
     public static int index = 0;
     private static IState currentState;
-    private static boolean firstIteration;
-
+    public static boolean firstIteration;
 
     public static ArrayList<IState> states = new ArrayList<>();
 
-    public void initStates() {
+    public void initStates() { // add actions here
         firstIteration = true;
         states.add(new Start());
+        states.add(new DC_Motor());
         states.add(new Finish());
     }
 
@@ -28,9 +32,10 @@ public class StateController {
 
         if (currentState.isFinished()) {
             firstIteration = true;
-            StateController.index++;
+            StateMachine.index++;
             currentState.finilize();
         }
+        
     }    
 
     public boolean isProgramFinished() {

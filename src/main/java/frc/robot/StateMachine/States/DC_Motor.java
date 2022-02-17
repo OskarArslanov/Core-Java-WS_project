@@ -2,30 +2,29 @@ package frc.robot.StateMachine.States;
 
 import frc.robot.StateMachine.CoreEngine.IState;
 
-public class Finish implements IState {
+public class DC_Motor implements IState {
 
     @Override
     public void initialize() {
-        // TODO Auto-generated method stub
-        
+        STATION_CONTROLLER.resetEnc();      
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
+        STATION_CONTROLLER.setPWM(1);
         
     }
 
     @Override
     public void finilize() {
-        // TODO Auto-generated method stub
+        STATION_CONTROLLER.setPWM(0);
         
     }
 
     @Override
     public boolean isFinished() {
-        // TODO Auto-generated method stub
-        return false;
+        return STATION_CONTROLLER.getEncoderDistance() > 100;
     }
+    
     
 }

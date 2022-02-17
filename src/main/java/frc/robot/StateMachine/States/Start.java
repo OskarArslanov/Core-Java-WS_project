@@ -1,6 +1,6 @@
 package frc.robot.StateMachine.States;
 
-import frc.robot.subsystems.StationController;
+import frc.robot.StateMachine.CoreEngine.IState;
 
 public class Start implements IState {
 
@@ -25,7 +25,7 @@ public class Start implements IState {
     @Override
     public boolean isFinished() {
         // TODO Auto-generated method stub
-        return StationController.getStartButtonStatus();
+        return STATION_CONTROLLER.getStartButtonStatus();
     }
 
 }
