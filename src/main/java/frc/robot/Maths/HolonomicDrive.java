@@ -34,9 +34,11 @@ public class HolonomicDrive extends PositionController {
     }
     
     public void move(double distanceX, double distanceY, double distanceZ, boolean isStartAcceleration, boolean isEndAcceleration) {
-        double way = Math.hypot(distanceX - getPositionX(), distanceY - getPositionY());
-        double angle = distanceZ - getPositionZ();
-        double holonomicRotation = Math.atan2(distanceY - getPositionY(), distanceX - getPositionX()) + Math.toRadians(getPositionZ()) ;
+        double way = Math.hypot(distanceX - Main.motorControllerMap.get("posX"), 
+        distanceY - Main.motorControllerMap.get("posY"));
+        double angle = distanceZ - Main.sensorsMap.get("posZ");
+        double holonomicRotation = Math.atan2(distanceY - Main.motorControllerMap.get("posY"),
+         distanceX - Main.motorControllerMap.get("posX")) + Math.toRadians(Main.sensorsMap.get("posZ")) ;
         calcSpeeds(way, angle, holonomicRotation, isStartAcceleration, isEndAcceleration);
         calcFinish(way, angle, isEndAcceleration);
     }

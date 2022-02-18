@@ -18,8 +18,8 @@ public class SensorController implements Runnable{
         while (true) {
             double startTime = Timer.getFPGATimestamp();
             try {
-                Main.sensorsMap.put("gyro", GYRO.getAngle());
-                if (Main.sensorsMap.get("resetGyro") == 1) {
+                Main.sensorsMap.put("posZ", GYRO.getAngle());
+                if (Main.sensorsMap.get("resetZ") == 1) {
                     GYRO.reset();
                 }
                 Main.sensorsMap.put("sharpLeft", SHARP_LEFT.getAverageVoltage());

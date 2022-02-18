@@ -68,15 +68,10 @@ public class MotorController implements Runnable {
         PID2.calculate(ENCODER2.getSpeed(), motorRF);
         PID3.calculate(ENCODER3.getSpeed(), motorRR);
 
-        // MOTOR0.set(PID0.getOutput());
-        // MOTOR1.set(PID1.getOutput());
-        // MOTOR2.set(-PID2.getOutput()); // revert
-        // MOTOR3.set(-PID3.getOutput()); // revert
-
-        MOTOR0.set(1);
-        MOTOR1.set(1);
-        MOTOR2.set(-1);
-        MOTOR3.set(-1);
+        MOTOR0.set(PID0.getOutput());
+        MOTOR1.set(PID1.getOutput());
+        MOTOR2.set(-PID2.getOutput()); // revert
+        MOTOR3.set(-PID3.getOutput()); // revert
 
     }
 }
