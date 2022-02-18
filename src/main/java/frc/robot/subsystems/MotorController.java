@@ -4,7 +4,7 @@ import com.studica.frc.TitanQuadEncoder;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Main;
-import frc.robot.Maths.PID;
+import frc.robot.Maths.Common.PID;
 
 public class MotorController implements Runnable {
 

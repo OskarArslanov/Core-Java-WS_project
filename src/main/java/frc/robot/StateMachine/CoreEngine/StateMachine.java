@@ -3,8 +3,12 @@ package frc.robot.StateMachine.CoreEngine;
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.StateMachine.States.DC_Motor;
+import frc.robot.StateMachine.States.ResetPos;
+import frc.robot.StateMachine.Enums.EnumGripper;
+import frc.robot.StateMachine.Enums.EnumLift;
+import frc.robot.StateMachine.Enums.EnumRotation;
 import frc.robot.StateMachine.States.Finish;
+import frc.robot.StateMachine.States.OdometryABS;
 import frc.robot.StateMachine.States.Start;
 
 public class StateMachine { // inner class that adapts Oskar's states to CommandBase
@@ -19,7 +23,8 @@ public class StateMachine { // inner class that adapts Oskar's states to Command
     public void initStates() { // add actions here
         firstIteration = true;
         states.add(new Start());
-        states.add(new DC_Motor());
+        states.add(new ResetPos(0,0,0));
+        states.add(new OdometryABS(0, 50, 0, true, true, EnumLift.IDLE, EnumRotation.IDLE, EnumGripper.IDLE));
         states.add(new Finish());
     }
 

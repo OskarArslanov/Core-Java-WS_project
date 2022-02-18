@@ -1,4 +1,4 @@
-package frc.robot.Maths;
+package frc.robot.Maths.Common;
 
 public class Limits {
     

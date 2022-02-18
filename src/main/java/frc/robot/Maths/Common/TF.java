@@ -1,4 +1,4 @@
-package frc.robot.Maths;
+package frc.robot.Maths.Common;
 
 public class TF {
     private double[] inArray;
@@ -64,11 +64,19 @@ public class TF {
     final static private double[] CORRECT_Z_POSITION_SPEED = {-15, -10, -3, 3, 10, 15};
     final static public TF SENSORS_ANGLE_TF = new TF(CORRECT_Z_POSITION_DELTA, CORRECT_Z_POSITION_SPEED);
 
-    final static private double[] DELTA_SONAR_SIDE = {-40, -13, -1, 1, 13, 40};
-    final static private double[] SPEED_SONAR_SIDE = {-75, -30, -3, 3, 30, 75};
-    final static public TF SONAR_END = new TF(DELTA_SONAR_SIDE, SPEED_SONAR_SIDE);
+    final static private double[] DELTA_SONAR_END = {-40, -13, -1, 1, 13, 40};
+    final static private double[] SPEED_SONAR_END = {-75, -30, -3, 3, 30, 75};
+    final static public TF SONAR_END = new TF(DELTA_SONAR_END, SPEED_SONAR_END);
 
-    final static private double[] DELTA_SHARP = {-40, -13, -1, 1, 13, 40};
-    final static private double[] SPEED_SHARP = {-75, -30, -3, 3, 30, 75};
-    final static public TF SHARP_END = new TF(DELTA_SHARP, SPEED_SHARP);
+    final static private double[] DELTA_SONAR_CONT = {-40, -25, -10, 10, 25, 40};
+    final static private double[] SPEED_SONAR_CONT = {-70, -60, -50, 50, 60, 70};
+    final static public TF SONAR_CONT = new TF(DELTA_SONAR_CONT, SPEED_SONAR_CONT);
+
+    final static private double[] DELTA_SHARP_END = {-40, -13, -1, 1, 13, 40};
+    final static private double[] SPEED_SHARP_END = {-75, -30, -3, 3, 30, 75};
+    final static public TF SHARP_END = new TF(DELTA_SHARP_END, SPEED_SHARP_END);
+
+    final static private double[] DELTA_SHARP_CONT = {-30, -20, -10, 10, 20, 30};
+    final static private double[] SPEED_SHARP_CONT = {-70, -60, -50, 50, 60, 70};
+    final static public TF SHARP_CONT = new TF(DELTA_SHARP_CONT, SPEED_SHARP_CONT);
 }

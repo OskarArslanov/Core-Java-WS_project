@@ -1,4 +1,4 @@
-package frc.robot.Maths;
+package frc.robot.Maths.Odometry;
 
 import frc.robot.Main;
 

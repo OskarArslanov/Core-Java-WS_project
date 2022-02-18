@@ -1,12 +1,24 @@
-package frc.robot.Maths;
+package frc.robot.Maths.Odometry;
 
 import frc.robot.Main;
+import frc.robot.Maths.Common.Limits;
+import frc.robot.Maths.Common.TF;
 import frc.robot.StateMachine.CoreEngine.StateMachine;
 
 public class HolonomicDrive extends PositionController {
     private static boolean[] finish = new boolean[2];
 
-    private void calcSpeeds(double way, double angle, double holonomicRotation, boolean isStartAcceleration, boolean isEndAcceleration) {
+    public static void move(double distanceX, double distanceY, double distanceZ, boolean isStartAcceleration, boolean isEndAcceleration) {
+        double way = Math.hypot(distanceX - Main.motorControllerMap.get("posX"), 
+        distanceY - Main.motorControllerMap.get("posY"));
+        double angle = distanceZ - Main.sensorsMap.get("posZ");
+        double holonomicRotation = Math.atan2(distanceY - Main.motorControllerMap.get("posY"),
+         distanceX - Main.motorControllerMap.get("posX")) + Math.toRadians(Main.sensorsMap.get("posZ")) ;
+        calcSpeeds(way, angle, holonomicRotation, isStartAcceleration, isEndAcceleration);
+        calcFinish(way, angle, isEndAcceleration);
+    }
+
+    private static void calcSpeeds(double way, double angle, double holonomicRotation, boolean isStartAcceleration, boolean isEndAcceleration) {
         double kAccelarion;
         if (isStartAcceleration) {
             TF.TIMER_TO_K.calculate(StateMachine.iterationTime);
@@ -33,17 +45,7 @@ public class HolonomicDrive extends PositionController {
         Main.motorControllerMap.put("speedZ", accumulatedDistanceAngle);
     }
     
-    public void move(double distanceX, double distanceY, double distanceZ, boolean isStartAcceleration, boolean isEndAcceleration) {
-        double way = Math.hypot(distanceX - Main.motorControllerMap.get("posX"), 
-        distanceY - Main.motorControllerMap.get("posY"));
-        double angle = distanceZ - Main.sensorsMap.get("posZ");
-        double holonomicRotation = Math.atan2(distanceY - Main.motorControllerMap.get("posY"),
-         distanceX - Main.motorControllerMap.get("posX")) + Math.toRadians(Main.sensorsMap.get("posZ")) ;
-        calcSpeeds(way, angle, holonomicRotation, isStartAcceleration, isEndAcceleration);
-        calcFinish(way, angle, isEndAcceleration);
-    }
-    
-    private void calcFinish(double way, double angle, boolean isEndAcceleration) {
+    private static void calcFinish(double way, double angle, boolean isEndAcceleration) {
         if (isEndAcceleration) {
             finish[0] = way < 0.5;
             finish[1] = Limits.isValueInLimits(angle, -0.25, 0.25);
@@ -53,7 +55,7 @@ public class HolonomicDrive extends PositionController {
         }
     }
 
-    public boolean isFinish() {
+    public static boolean isFinish() {
         return finish[0] && finish[1];
     }
 }
