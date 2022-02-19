@@ -1,5 +1,6 @@
 package frc.robot.StateMachine.States;
 
+import frc.robot.Main;
 import frc.robot.StateMachine.CoreEngine.IState;
 
 public class Finish implements IState {
@@ -12,7 +13,9 @@ public class Finish implements IState {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
+        Main.motorControllerMap.put("speedX", 0.0);
+        Main.motorControllerMap.put("speedY", 0.0);
+        Main.motorControllerMap.put("speedZ", 0.0);
         
     }
 

@@ -15,10 +15,6 @@ public class ResetPos implements IState {
 
     @Override
     public void initialize() {
-        Main.motorControllerMap.put("posX", posX);
-        Main.motorControllerMap.put("posY", posY);
-        Main.motorControllerMap.put("posZ", posZ);
-
     }
 
     private boolean readyX;
@@ -32,7 +28,12 @@ public class ResetPos implements IState {
         Main.motorControllerMap.put("posZ", posZ);
         readyX = posX == Main.motorControllerMap.get("posX");
         readyY = posY == Main.motorControllerMap.get("posY");
-        readyZ = posZ == Main.motorControllerMap.get("posZ");
+        if (this.posZ == -1) {
+            readyZ = true;
+        } else {
+            readyZ = posZ == Main.motorControllerMap.get("posZ");
+            Main.sensorsMap.put("resetGyro", 1.0);
+        }
     }
 
     @Override

@@ -18,9 +18,9 @@ public class SensorController implements Runnable{
         while (true) {
             double startTime = Timer.getFPGATimestamp();
             try {
-                Main.sensorsMap.put("posZ", GYRO.getAngle());
-                if (Main.sensorsMap.get("resetZ") == 1) {
+                if (Main.sensorsMap.get("resetGyro") == 1) {
                     GYRO.reset();
+                    Main.sensorsMap.put("resetGyro", 0.0);
                 }
                 Main.sensorsMap.put("sharpLeft", SHARP_LEFT.getAverageVoltage());
                 Main.sensorsMap.put("sharpRight", SHARP_RIGHT.getAverageVoltage());
@@ -33,6 +33,7 @@ public class SensorController implements Runnable{
                 Main.switchMap.put("LS_Top", LM_SWITCH_TOP.get());
                 Main.switchMap.put("LS_Bottom", LM_SWITCH_BOTTOM.get());
                 Main.sensorsMap.put("updateTime", sensorsUpdateTime);
+                Main.sensorsMap.put("srcGyro", GYRO.getAngle());
                 Thread.sleep(20);
             } catch (Exception e) {}
             sensorsUpdateTime = Timer.getFPGATimestamp() - startTime;

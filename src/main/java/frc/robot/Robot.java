@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
       StateMachine.index = 0;
     }
     sendSmartDashBoard();
-    PositionController.calculate();
+    PositionController.calculateXYZ();
   }
   
   @Override
@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
     if (auto != null) {
       auto.cancel();
     }
+    
   }
 
   @Override
@@ -54,9 +55,16 @@ public class Robot extends TimedRobot {
     }
   }
 
-  @Override
-  public void testInit() {
- 
+  @Override 
+  public void teleopPeriodic() {
+    Main.motorControllerMap.put("speedX", 0.0);
+    Main.motorControllerMap.put("speedY", 0.0);
+    Main.motorControllerMap.put("speedZ", 0.0);
+    Main.motorControllerMap.put("posX", 0.0);
+    Main.motorControllerMap.put("posY", 0.0);
+    Main.sensorsMap.put("posZ", 0.0);
+    Main.sensorsMap.put("resetGyro", 0.0);
+    Main.motorControllerMap.put("resetEncs", 1.0);
   }
 
   private void initMaps() {
@@ -80,14 +88,19 @@ public class Robot extends TimedRobot {
     Main.motorControllerMap.put("rpm1", 0.0);
     Main.motorControllerMap.put("rpm2", 0.0);
     Main.motorControllerMap.put("rpm3", 0.0);
+    Main.motorControllerMap.put("PID0", 0.0);
+    Main.motorControllerMap.put("PID1", 0.0);
+    Main.motorControllerMap.put("PID2", 0.0);
+    Main.motorControllerMap.put("PID3", 0.0);
     Main.motorControllerMap.put("speedX", 0.0);
     Main.motorControllerMap.put("speedY", 0.0);
     Main.motorControllerMap.put("speedZ", 0.0);
     Main.motorControllerMap.put("posX", 0.0);
     Main.motorControllerMap.put("posY", 0.0);
     Main.sensorsMap.put("posZ", 0.0);
-    Main.sensorsMap.put("resetZ", 0.0);
+    Main.sensorsMap.put("resetGyro", 0.0);
     Main.motorControllerMap.put("updateTime", 0.0);
+    Main.sensorsMap.put("srcGyro", 0.0);
   }
 
   private void sendSmartDashBoard() {
@@ -99,6 +112,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("sharpRight", Main.sensorsMap.get("sharpRight"));
     SmartDashboard.putNumber("sonarLeft", Main.sensorsMap.get("sonarLeft"));
     SmartDashboard.putNumber("sonarRight", Main.sensorsMap.get("sonarRight"));
+    SmartDashboard.putBoolean("isResetZ", Main.sensorsMap.get("resetGyro") == 1.0);
+    SmartDashboard.putBoolean("isResetEncs", Main.motorControllerMap.get("resetEncs") == 1.0);
     SmartDashboard.putNumber("rpm0", Main.motorControllerMap.get("rpm0"));
     SmartDashboard.putNumber("rpm1", Main.motorControllerMap.get("rpm1"));
     SmartDashboard.putNumber("rpm2", Main.motorControllerMap.get("rpm2"));
@@ -107,6 +122,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("enc1", Main.motorControllerMap.get("enc1"));
     SmartDashboard.putNumber("enc2", Main.motorControllerMap.get("enc2"));
     SmartDashboard.putNumber("enc3", Main.motorControllerMap.get("enc3"));
+    SmartDashboard.putNumber("PID0", Main.motorControllerMap.get("PID0"));
+    SmartDashboard.putNumber("PID1", Main.motorControllerMap.get("PID1"));
+    SmartDashboard.putNumber("PID2", Main.motorControllerMap.get("PID2"));
+    SmartDashboard.putNumber("PID3", Main.motorControllerMap.get("PID3"));
     SmartDashboard.putNumber("speedX", Main.motorControllerMap.get("speedX"));
     SmartDashboard.putNumber("speedY", Main.motorControllerMap.get("speedY"));
     SmartDashboard.putNumber("speedZ", Main.motorControllerMap.get("speedZ"));
@@ -116,5 +135,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("index", StateMachine.index);
     SmartDashboard.putNumber("updateTimeMotors", Main.motorControllerMap.get("updateTime"));
     SmartDashboard.putNumber("updateTimeSensors", Main.sensorsMap.get("updateTime"));
+    if (StateMachine.states.size() > 0) {
+      SmartDashboard.putString("currentState", StateMachine.currentState.getClass().getSimpleName());
+    } else {
+      SmartDashboard.putString("currentState", "null");
+    }
   }
 }

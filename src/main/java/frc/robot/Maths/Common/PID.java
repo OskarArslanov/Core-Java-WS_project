@@ -29,14 +29,14 @@ public class PID {
             errorI += errorP*kI;
             errorD += -errorI*kD;
         }
-        output = Limits.getLimitedValue((errorP + errorI + errorD), lowerLimit, upperLimit);
+        output = Limits.getLimitedValue((errorP + errorI + errorD), lowerLimit, upperLimit) / 100;
     }
 
     public double getOutput() {
-        return output / 100;
+        return output;
     }
     public void reset() {
-        this.isFirstCall = true;
+        this.isFirstCall = true; 
     }
 
 }

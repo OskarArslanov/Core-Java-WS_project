@@ -7,25 +7,24 @@ public class Start implements IState {
 
     @Override
     public void initialize() {
-        // TODO Auto-generated method stub
-        
+        Main.sensorsMap.put("resetZ", 1.0);
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
+        Main.motorControllerMap.put("speedX", 0.0);
+        Main.motorControllerMap.put("speedY", 0.0);
+        Main.motorControllerMap.put("speedZ", 0.0);
         
     }
 
     @Override
     public void finilize() {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
     public boolean isFinished() {
-        return Main.switchMap.get("startButtonStatus");
+        return true;
     }
 
 }

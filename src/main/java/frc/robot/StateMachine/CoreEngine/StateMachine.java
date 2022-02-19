@@ -3,28 +3,22 @@ package frc.robot.StateMachine.CoreEngine;
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.StateMachine.States.ResetPos;
-import frc.robot.StateMachine.Enums.EnumGripper;
-import frc.robot.StateMachine.Enums.EnumLift;
-import frc.robot.StateMachine.Enums.EnumRotation;
-import frc.robot.StateMachine.States.Finish;
-import frc.robot.StateMachine.States.OdometryABS;
-import frc.robot.StateMachine.States.Start;
+import frc.robot.StateMachine.Enums.*;
+import frc.robot.StateMachine.States.*;
 
 public class StateMachine { // inner class that adapts Oskar's states to CommandBase
 
     public static int index = 0;
-    private IState currentState;
+    public static IState currentState;
     public static boolean firstIteration;
     public static double iterationTime;
-
     public static ArrayList<IState> states = new ArrayList<>();
 
     public void initStates() { // add actions here
         firstIteration = true;
         states.add(new Start());
         states.add(new ResetPos(0,0,0));
-        states.add(new OdometryABS(0, 50, 0, true, true, EnumLift.IDLE, EnumRotation.IDLE, EnumGripper.IDLE));
+        states.add(new OdometryABS(0, 100, 0, true, true, EnumLift.IDLE, EnumRotation.IDLE, EnumGripper.IDLE));
         states.add(new Finish());
     }
 
@@ -48,6 +42,6 @@ public class StateMachine { // inner class that adapts Oskar's states to Command
     }    
 
     public boolean isProgramFinished() {
-        return currentState.getClass().getName() == "Finish";
+        return false;
     }
 }

@@ -48,7 +48,7 @@ public class TF {
     final static private double[] ANGLE_SPEED = { -30, -10, 10, 30 };
     final static public TF GYROSCOPE_ANGLE_TF = new TF(ANGLE_DELTA, ANGLE_SPEED);
 
-    final static private double[] DISTANCE_DELTA_END = { 0, 3, 5, 15, 20 };
+    final static private double[] DISTANCE_DELTA_END = { 0, 3, 10, 15, 20 };
     final static private double[] DISTANCE_SPEED_END = { 0, 7, 15, 40, 70 };
     final static public TF DISTANCE_TF_END = new TF(DISTANCE_DELTA_END, DISTANCE_SPEED_END);
 
